@@ -3,3 +3,5 @@ export PS1="\[\033[38;5;081m\]\u\[\033[38;5;245m\]@\[\033[38;5;206m\]\H \[\033[3
 
 echo -e "\n\nWelcome to a refreshed Serpent OS image.\n"
 echo -e "This build has not been secured or optimised\nDO NOT use in production environments.\n"
+
+source /usr/share/bash-completion/bash_completion
