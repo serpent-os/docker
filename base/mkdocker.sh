@@ -11,15 +11,12 @@ moss ar -D rootDir -p 0 protosnek https://dev.serpentos.com/protosnek/x86_64/sto
 moss ar -D rootDir -p 10 volatile https://dev.serpentos.com/volatile/x86_64/stone.index
 moss it -D rootDir -y moss bash dash nss curl bash-completion util-linux coreutils procps
 
-# TODO: Stateless profile! This is ugly as sin.
-mkdir rootDir/root
-echo "root:x:0:0:root:/root:/bin/bash" >> rootDir/etc/passwd
-echo "root:x:0:0:root:/root:/bin/bash" >> rootDir/etc/passwd-
-echo "root:x:0:" >> rootDir/etc/group
-echo "root:x:0:" >> rootDir/etc/group-
-mkdir rootDir/tmp
-
-install -m 00644 profile rootDir/etc/profile
+# basic config
+mkdir -pv rootDir/var/cache/ldconfig
+moss-container -u 0 -d rootDir/ -- ldconfig
+moss-container -u 0 -d rootDir/ -- systemd-sysusers
+moss-container -u 0 -d rootDir/ -- systemd-tmpfiles --create
+moss-container -u 0 -d rootDir/ -- systemd-firstboot --force --setup-machine-id --delete-root-password --locale=en_US.UTF-8 --timezone=UTC --root-shell=/usr/bin/bash
 
 # Clear the cache..
 rm -rf rootDir/.moss/cache/downloads
