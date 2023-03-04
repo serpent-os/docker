@@ -7,8 +7,7 @@ if [[ "$EUID" -ne "0" ]]; then
 fi
 
 rm -rf rootDir
-moss ar -D rootDir -p 0 protosnek https://dev.serpentos.com/protosnek/x86_64/stone.index
-moss ar -D rootDir -p 10 volatile https://dev.serpentos.com/volatile/x86_64/stone.index
+moss ar -D rootDir volatile https://dev.serpentos.com/volatile/x86_64/stone.index
 moss it -D rootDir -y moss bash dash nss curl bash-completion util-linux coreutils procps
 
 # basic config
