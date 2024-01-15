@@ -7,8 +7,8 @@ if [[ "$EUID" -ne "0" ]]; then
 fi
 
 rm -rf rootDir
-moss ar -D rootDir volatile https://dev.serpentos.com/volatile/x86_64/stone.index
-moss it -D rootDir -y moss bash dash nss curl bash-completion util-linux coreutils procps
+moss repo add -D rootDir volatile https://dev.serpentos.com/volatile/x86_64/stone.index
+moss install -D rootDir -y moss bash dash nss curl bash-completion util-linux coreutils procps
 
 # basic config
 mkdir -pv rootDir/var/cache/ldconfig
